@@ -1,0 +1,7 @@
+
+> project-management-backend@1.0.0 start
+> node server.js
+
+Server running on port 51509
+API available at http://localhost:51509/api
+Connected to SQLite database
