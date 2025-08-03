@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./server
+    container_name: pm-backend
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key-change-this}
+      - DATABASE_URL=/app/data/database.sqlite
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./client
+    container_name: pm-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  data:
